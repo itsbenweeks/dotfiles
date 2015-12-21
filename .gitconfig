@@ -8,7 +8,7 @@
 [core]
 	excludesfile = /Users/benweeks/.gitignore
     ignorecase = False
-	editor = vim
+    editor = /usr/bin/vim
 [rerere]
 	enabled = true
 [push]
@@ -17,3 +17,13 @@
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
+
+[alias]
+    gl = log -100 --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
+    co = checkout
+    cm = commit -m 
+    pom = pull origin master
+    pmm = pull mine master
+    diff = diff --color-words
+    s  = status
+    aa = add -A
