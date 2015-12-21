@@ -1,0 +1,19 @@
+[color]
+	ui = auto
+[hub]
+	host = github.mit.edu
+[user]
+	email = bweeks@gmail.com
+	name = Ben Weeks
+[core]
+	excludesfile = /Users/benweeks/.gitignore
+    ignorecase = False
+	editor = vim
+[rerere]
+	enabled = true
+[push]
+	default = simple
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
