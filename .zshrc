@@ -82,3 +82,12 @@ HELPDIR=/usr/local/share/zsh/help
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Add docker-machine
+
+if [[ $(docker-machine status default) != 'Running' ]]
+  then
+    echo 'Docker-machine "default" not running...'
+    docker-machine start default
+fi
+eval $(docker-machine env default)
