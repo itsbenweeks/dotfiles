@@ -8,7 +8,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="bullet-train"
 
 # bullet-traing theme hide ruby
-BULLETTRAIN_RUBY_SHOW=false
+BULLETTRAIN_RUBY_SHOW=true
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -85,9 +85,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # Add docker-machine
 
-if [[ $(docker-machine status default) != 'Running' ]]
-  then
-    echo 'Docker-machine "default" not running...'
-    docker-machine start default
-fi
-eval $(docker-machine env default)
+# if [[ $(docker-machine status default) == 'Running' ]]
+#     eval $(docker-machine env default)
+
+### Add rbenv
+eval "$(rbenv init -)"
