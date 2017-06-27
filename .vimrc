@@ -12,8 +12,9 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/       " NeoBundle, required
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))             " NeoBundle, required
+call neobundle#begin(expand('~/.vim/bundle/'))             " NeoBundle, required
 NeoBundleFetch 'Shougo/neobundle.vim'                   " NeoBundle, required
+call neobundle#end()
 
 filetype plugin indent on                               " NeoBundle, required
 NeoBundleCheck    
@@ -78,7 +79,11 @@ set autoindent                                          " smart auto indenting
 set splitbelow                                          " new hoz splits go below
 set splitright                                          " new vert splits go right
 
+call neobundle#begin(expand('~/.vim/bundle/'))
+
 NeoBundle 'christoomey/vim-tmux-navigator'
+
+call neobundle#end()
                                                 " Switch panes with ctrl + hjkl
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -94,16 +99,14 @@ set showbreak=↪                                         " Mark lines that have
 " cpotions: aABceFs -- defaults
 set cpo+=J                                              " Yank by sentence (2-space a/ period)
 
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundle 'sjl/badwolf'
 NeoBundle 'altercation/vim-colors-solarized'
-" TODO This looks bad! Fixit.
-if has('gui_running')
-    colorscheme solarized
-    set background=light
-else
-    colorscheme badwolf
-    set background=dark
-endif
+call neobundle#end()
+
+set background=light
+colorscheme badwolf
+syntax enable
 
 set fillchars=vert:│
 
@@ -131,8 +134,10 @@ nnoremap <leader>- <C-w>s
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Tagbar tag browser
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleLazy 'majutsushi/tagbar',      {'autoload' : {'filetypes' : ['python', 'ruby', 'javascript', 'css'] } }
 NeoBundleLazy 'vim-scripts/AutoTag',    {'autoload' : {'filetypes' : ['python', 'ruby', 'javascript', 'css'] } }
+call neobundle#end()
                                         " open tagbar, switch to it
 nnoremap <leader>t :TagbarToggle<CR>
                                         " open tagbar, close when done
@@ -146,6 +151,7 @@ en
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> vimproc - execute shell in VIM
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
       \     'windows' : 'tools\\update-dll-mingw',
@@ -158,6 +164,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Git statuses
 NeoBundle 'tpope/vim-fugitive'
+call neobundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Functions
@@ -171,7 +178,9 @@ endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Syntastic error highlighting
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleLazy 'scrooloose/syntastic', {'autoload' : {'filetypes' : ['ruby', 'javascript'] } }
+call neobundle#end()
                                         " Show syntastic error box
 nnoremap <leader>e :lw<CR>
                                         " Hide syntastic error box
@@ -189,13 +198,17 @@ let g:syntastic_python_checker_args='-d C0301,E1101'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Indentation gutters for HTML
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleLazy 'nathanaelkane/vim-indent-guides', {'autoload' : {'filetypes' : ['html'] } }
+call neobundle#end()
 let g:indent_guides_start_level = 2                     " Show vert gutters in html files
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Airline
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundle 'bling/vim-airline'
+call neobundle#end()
 let g:airline#extensions#tabline#enabled = 1
 " when only one tab is open, show all of the open buffers
 " user powerline patched fonts = no
@@ -212,9 +225,11 @@ let g:airline = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Python
+call neobundle#begin(expand('~/.vim/bundle/'))
 "NeoBundleLazy 'ehamberg/vim-cute-python', {'autoload' : {'filetypes' : ['python'] } }
 NeoBundleLazy 'klen/python-mode', {'autoload' : {'filetypes' : ['python'] } }
 NeoBundle 'nvie/vim-flake8'
+call neobundle#end()
 
 " Configuration for Python-mode
 let g:pymode_quickfix_minheight = 5
@@ -247,6 +262,7 @@ let g:pymode_rope_goto_definition_bind = '<leader>g'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Syntax bundles
 " Handle new html5 tags and properties
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleLazy 'othree/html5.vim.git', {'autoload' : {'filetypes' : ['html'] } }
 " Add CSS3 syntax highlighting
 NeoBundleLazy 'hail2u/vim-css3-syntax', {'autoload' : {'filetypes' : ['css'] } }
@@ -267,123 +283,7 @@ NeoBundle 'spf13/vim-autoclose'
 
 " ~> Emmet
 NeoBundle 'mattn/emmet-vim'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ~> NYAN ME
-function! NyanMe() " {{{
-    hi NyanFur             guifg=#BBBBBB
-    hi NyanPoptartEdge     guifg=#ffd0ac
-    hi NyanPoptartFrosting guifg=#fd3699 guibg=#fe98ff
-    hi NyanRainbow1        guifg=#6831f8
-    hi NyanRainbow2        guifg=#0099fc
-    hi NyanRainbow3        guifg=#3cfa04
-    hi NyanRainbow4        guifg=#fdfe00
-    hi NyanRainbow5        guifg=#fc9d00
-    hi NyanRainbow6        guifg=#fe0000
-
-
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl None
-    echo ""
-
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl NyanFur
-    echon "╰"
-    echohl NyanPoptartEdge
-    echon "⟨"
-    echohl NyanPoptartFrosting
-    echon "⣮⣯⡿"
-    echohl NyanPoptartEdge
-    echon "⟩"
-    echohl NyanFur
-    echon "⩾^ω^⩽"
-    echohl None
-    echo ""
-
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl None
-    echon " "
-    echohl NyanFur
-    echon "”   ‟"
-    echohl None
-
-    sleep 1
-    redraw
-    echo " "
-    echo " "
-    echo "Noms?"
-    redraw
-endfunction " }}}
-command! NyanMe call NyanMe()
+call neobundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> End of configuration
