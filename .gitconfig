@@ -3,10 +3,10 @@
 [hub]
 	host = github.roving.com
 [user]
-	email = bweeks@constantcontact.com
+	email = bweeks@gmail.com
 	name = Ben Weeks
 [core]
-	excludesfile = /Users/benweeks/.gitignore
+	excludesfile = /Users/bweeks/.gitignore_global
     ignorecase = False
     editor = /usr/bin/vim
 [rerere]
@@ -28,3 +28,4 @@
     diff = diff --color-words
     s  = status
     aa = add -A
+    bump = commit -am 'bump'
