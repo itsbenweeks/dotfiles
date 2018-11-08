@@ -1,22 +1,22 @@
 [color]
-	ui = auto
+    ui = auto
 [hub]
-	host = github.roving.com
+    host = github.roving.com
 [user]
-	email = bweeks@gmail.com
-	name = Ben Weeks
+    email = bweeks@gmail.com
+    name = Ben Weeks
 [core]
-	excludesfile = /Users/bweeks/.gitignore_global
+    excludesfile = /Users/bweeks/.gitignore_global
     ignorecase = False
     editor = /usr/bin/vim
 [rerere]
-	enabled = true
+    enabled = true
 [push]
-	default = simple
+    default = simple
 [filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
-	required = true
+    clean = git hawser clean %f
+    smudge = git hawser smudge %f
+    required = true
 
 [alias]
     gl = log -100 --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
