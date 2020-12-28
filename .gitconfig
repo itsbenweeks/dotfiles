@@ -1,7 +1,7 @@
 [color]
     ui = auto
 [hub]
-    host = github.roving.com
+    host = github.com
 [user]
     email = bweeks@gmail.com
     name = Ben Weeks
