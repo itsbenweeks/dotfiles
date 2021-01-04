@@ -1,11 +1,10 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                                                              "
 "    Ben Weeks's Dotfiles: .vimrc                                              "
-"    - uses Vundle to manage and load plugins                               "
-"                                                                              "
+"    - uses Vundle to manage and load plugins                                  "
 "                                                                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ~> Pre-setup
+" ~> Plugin Setup
 
 set nocompatible                                        " Be iMproved
 filetype off
@@ -13,7 +12,9 @@ set rtp+=~/.vim/bundle/Vundle.vim/                      " Vundle, required
 
 call vundle#begin(expand('~/.vim/bundle/'))             " Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-" Handle new html5 tags and properties
+" ~> `.editorconfig` support to play nicely with others
+Plugin 'editorconfig/editorconfig-vim'
+" ~> tmux-navigation plugin
 Plugin 'christoomey/vim-tmux-navigator'
 " ~> Theming plugins
 Plugin 'sjl/badwolf'
