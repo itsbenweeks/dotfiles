@@ -1,23 +1,72 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                                                              "
 "    Ben Weeks's Dotfiles: .vimrc                                              "
-"    - uses NeoBundle to manage and load plugins                               "
+"    - uses Vundle to manage and load plugins                               "
 "                                                                              "
 "                                                                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Pre-setup
 
-if has('vim_starting')
-    set nocompatible                                    " Be iMproved
-    set runtimepath+=~/.vim/bundle/neobundle.vim/       " NeoBundle, required
-endif
+set nocompatible                                        " Be iMproved
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim/                      " Vundle, required
 
-call neobundle#begin(expand('~/.vim/bundle/'))             " NeoBundle, required
-NeoBundleFetch 'Shougo/neobundle.vim'                   " NeoBundle, required
-call neobundle#end()
+call vundle#begin(expand('~/.vim/bundle/'))             " Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+" Handle new html5 tags and properties
+Plugin 'christoomey/vim-tmux-navigator'
+" ~> Theming plugins
+Plugin 'sjl/badwolf'
+Plugin 'altercation/vim-colors-solarized'
+" ~> Tagbar tag browser plugin
+Plugin 'majutsushi/tagbar',      {'autoload' : {'filetypes' : ['python', 'ruby', 'javascript', 'css'] } }
+Plugin 'vim-scripts/AutoTag',    {'autoload' : {'filetypes' : ['python', 'ruby', 'javascript', 'css'] } }
+" ~> Vim Shell Plugin
+Plugin 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+" ~> Git statuses
+Plugin 'tpope/vim-fugitive'
+" ~> Syntastic error highlighting
+Plugin 'scrooloose/syntastic', {'autoload' : {'filetypes' : ['ruby', 'javascript'] } }
+" ~> Indentation gutters for HTML
+Plugin 'nathanaelkane/vim-indent-guides', {'autoload' : {'filetypes' : ['html'] } }
+" ~> Airline plugin
+Plugin 'bling/vim-airline'
+" ~> Python
+"Plugin 'ehamberg/vim-cute-python', {'autoload' : {'filetypes' : ['python'] } }
+Plugin 'klen/python-mode', {'autoload' : {'filetypes' : ['python'] } }
+Plugin 'nvie/vim-flake8'
+" ~> HTML and CSS Syntax plugins
+Plugin 'othree/html5.vim.git', {'autoload' : {'filetypes' : ['html'] } }
+" Add CSS3 syntax highlighting
+Plugin 'hail2u/vim-css3-syntax', {'autoload' : {'filetypes' : ['css'] } }
+" Highlight scss
+Plugin 'cakebaker/scss-syntax.vim', {'autoload' : {'filetypes' : ['scss'] } }
+" leader V toggles
+Plugin 'mikewest/vimroom', {'autoload' : {'filetypes' : ['markdown'] } }
+" ReStructured Text (.rst files)
+Plugin 'Rykka/riv.vim'
 
-filetype plugin indent on                               " NeoBundle, required
-NeoBundleCheck    
+" ~> Nerd commenter
+Plugin 'scrooloose/nerdcommenter'
+" ~> Surround
+Plugin 'tpope/vim-surround'
+
+" ~> Auto-Close
+Plugin 'spf13/vim-autoclose'
+
+" ~> Emmet
+Plugin 'mattn/emmet-vim'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ~> End of Plugins
+call vundle#end()
+filetype plugin indent on                               " Vundle, required
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> General
@@ -63,7 +112,7 @@ set scrolloff=2                                         " keep 2 lines between c
 set formatoptions=qn2                                   " Format comments gq
                                                         "   reconize numbered lists
                                                         "   No break lines after 1 letter word
-set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11       " Make sure gVim uses a powerline font
+set guifont=MesloLGS\ NF\ Regular:h11       " Make sure gVim uses a powerline font
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Tab behaviors
@@ -79,11 +128,11 @@ set autoindent                                          " smart auto indenting
 set splitbelow                                          " new hoz splits go below
 set splitright                                          " new vert splits go right
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+" call vundle#begin(expand('~/.vim/bundle/'))
 
-NeoBundle 'christoomey/vim-tmux-navigator'
+" Plugin 'christoomey/vim-tmux-navigator'
 
-call neobundle#end()
+" call vundle#end()
                                                 " Switch panes with ctrl + hjkl
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -99,10 +148,10 @@ set showbreak=↪                                         " Mark lines that have
 " cpotions: aABceFs -- defaults
 set cpo+=J                                              " Yank by sentence (2-space a/ period)
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundle 'sjl/badwolf'
-NeoBundle 'altercation/vim-colors-solarized'
-call neobundle#end()
+" call vundle#begin(expand('~/.vim/bundle/'))
+" Plugin 'sjl/badwolf'
+" Plugin 'altercation/vim-colors-solarized'
+" call vundle#end()
 
 set background=light
 colorscheme badwolf
@@ -134,10 +183,10 @@ nnoremap <leader>- <C-w>s
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Tagbar tag browser
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleLazy 'majutsushi/tagbar',      {'autoload' : {'filetypes' : ['python', 'ruby', 'javascript', 'css'] } }
-NeoBundleLazy 'vim-scripts/AutoTag',    {'autoload' : {'filetypes' : ['python', 'ruby', 'javascript', 'css'] } }
-call neobundle#end()
+" call vundle#begin(expand('~/.vim/bundle/'))
+" Plugin 'majutsushi/tagbar',      {'autoload' : {'filetypes' : ['python', 'ruby', 'javascript', 'css'] } }
+" Plugin 'vim-scripts/AutoTag',    {'autoload' : {'filetypes' : ['python', 'ruby', 'javascript', 'css'] } }
+" call vundle#end()
                                         " open tagbar, switch to it
 nnoremap <leader>t :TagbarToggle<CR>
                                         " open tagbar, close when done
@@ -151,20 +200,20 @@ en
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> vimproc - execute shell in VIM
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+" call vundle#begin(expand('~/.vim/bundle/'))
+" Plugin 'Shougo/vimproc.vim', {
+"      \ 'build' : {
+"      \     'windows' : 'tools\\update-dll-mingw',
+"      \     'cygwin' : 'make -f make_cygwin.mak',
+"      \     'mac' : 'make -f make_mac.mak',
+"      \     'unix' : 'make -f make_unix.mak',
+"      \    },
+"      \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Git statuses
-NeoBundle 'tpope/vim-fugitive'
-call neobundle#end()
+" Plugin 'tpope/vim-fugitive'
+" call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Functions
@@ -178,15 +227,15 @@ endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Syntastic error highlighting
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleLazy 'scrooloose/syntastic', {'autoload' : {'filetypes' : ['ruby', 'javascript'] } }
-call neobundle#end()
+" call vundle#begin(expand('~/.vim/bundle/'))
+" Plugin 'scrooloose/syntastic', {'autoload' : {'filetypes' : ['ruby', 'javascript'] } }
+" call vundle#end()
                                         " Show syntastic error box
 nnoremap <leader>e :lw<CR>
                                         " Hide syntastic error box
 nnoremap <leader>E :lcl<CR>
 let g:syntastic_check_on_open=1         " Don't check for errors until save
-"let g:syntastic_enable_signs=0         "no left of linenum signs
+let g:syntastic_enable_signs=0         "no left of linenum signs
 let g:syntastic_error_symbol=' ⧰'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_jump=0 " Do not jump to first error on save/open
@@ -198,17 +247,17 @@ let g:syntastic_python_checker_args='-d C0301,E1101'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Indentation gutters for HTML
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleLazy 'nathanaelkane/vim-indent-guides', {'autoload' : {'filetypes' : ['html'] } }
-call neobundle#end()
+" call vundle#begin(expand('~/.vim/bundle/'))
+" Plugin 'nathanaelkane/vim-indent-guides', {'autoload' : {'filetypes' : ['html'] } }
+" call vundle#end()
 let g:indent_guides_start_level = 2                     " Show vert gutters in html files
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Airline
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundle 'bling/vim-airline'
-call neobundle#end()
+" call vundle#begin(expand('~/.vim/bundle/'))
+" Plugin 'bling/vim-airline'
+" call vundle#end()
 let g:airline#extensions#tabline#enabled = 1
 " when only one tab is open, show all of the open buffers
 " user powerline patched fonts = no
@@ -225,11 +274,11 @@ let g:airline = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> Python
-call neobundle#begin(expand('~/.vim/bundle/'))
-"NeoBundleLazy 'ehamberg/vim-cute-python', {'autoload' : {'filetypes' : ['python'] } }
-NeoBundleLazy 'klen/python-mode', {'autoload' : {'filetypes' : ['python'] } }
-NeoBundle 'nvie/vim-flake8'
-call neobundle#end()
+" call vundle#begin(expand('~/.vim/bundle/'))
+" Plugin 'ehamberg/vim-cute-python', {'autoload' : {'filetypes' : ['python'] } }
+" Plugin 'klen/python-mode', {'autoload' : {'filetypes' : ['python'] } }
+" Plugin 'nvie/vim-flake8'
+" call vundle#end()
 
 " Configuration for Python-mode
 let g:pymode_quickfix_minheight = 5
@@ -260,30 +309,30 @@ let g:pymode_rope_goto_definition_bind = '<leader>g'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ~> Syntax bundles
 " Handle new html5 tags and properties
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleLazy 'othree/html5.vim.git', {'autoload' : {'filetypes' : ['html'] } }
+" call vundle#begin(expand('~/.vim/bundle/'))
+" ~> HTML and CSS Syntax plugins
+" Plugin 'othree/html5.vim.git', {'autoload' : {'filetypes' : ['html'] } }
 " Add CSS3 syntax highlighting
-NeoBundleLazy 'hail2u/vim-css3-syntax', {'autoload' : {'filetypes' : ['css'] } }
+" Plugin 'hail2u/vim-css3-syntax', {'autoload' : {'filetypes' : ['css'] } }
 " Highlight scss
-NeoBundleLazy 'cakebaker/scss-syntax.vim', {'autoload' : {'filetypes' : ['scss'] } }
+" Plugin 'cakebaker/scss-syntax.vim', {'autoload' : {'filetypes' : ['scss'] } }
 " leader V toggles
-NeoBundleLazy 'mikewest/vimroom', {'autoload' : {'filetypes' : ['markdown'] } }
+" Plugin 'mikewest/vimroom', {'autoload' : {'filetypes' : ['markdown'] } }
 " ReStructured Text (.rst files)
-NeoBundle 'Rykka/riv.vim'
+" Plugin 'Rykka/riv.vim'
 
 " ~> Nerd commenter
-NeoBundle 'scrooloose/nerdcommenter'
+" Plugin 'scrooloose/nerdcommenter'
 " ~> Surround
-NeoBundle 'tpope/vim-surround'
+" Plugin 'tpope/vim-surround'
 
 " ~> Auto-Close
-NeoBundle 'spf13/vim-autoclose'
+" Plugin 'spf13/vim-autoclose'
 
 " ~> Emmet
-NeoBundle 'mattn/emmet-vim'
-call neobundle#end()
+" Plugin 'mattn/emmet-vim'
+" call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ~> End of configuration
