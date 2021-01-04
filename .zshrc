@@ -272,3 +272,4 @@ function cut_release() {
     echo "Branch $BRANCH_NAME pushed to remote."
     exit 1
 }
+export PATH="/opt/homebrew/bin:$PATH"
