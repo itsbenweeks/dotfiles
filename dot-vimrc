@@ -30,6 +30,11 @@ Plugin 'Shougo/vimproc.vim', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
+" ~> LSP Servers
+Plugin 'dense-analysis/ale'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'rhysd/vim-lsp-ale'
+Plugin 'mattn/vim-lsp-settings'
 " ~> Git statuses
 Plugin 'tpope/vim-fugitive'
 " ~> Syntastic error highlighting

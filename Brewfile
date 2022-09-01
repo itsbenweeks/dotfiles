@@ -1,3 +1,6 @@
+brew "direnv"
+brew "maven"
+brew "jenv"
 brew "vim"
 brew "wget"
 brew "stow"
