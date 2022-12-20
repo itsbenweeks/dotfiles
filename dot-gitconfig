@@ -3,7 +3,7 @@
 [hub]
     host = github.com
 [user]
-    email = bweeks@gmail.com
+    email = bweeks@kyruus.com
     name = Ben Weeks
 [core]
     excludesfile = /Users/bweeks/.gitignore_global
@@ -19,14 +19,24 @@
     required = true
 
 [alias]
-    gl = log -100 --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
-    co = checkout
-    cm = commit -m
-    rv = remote -v
-    pom = pull origin master
-    pmm = pull mine master
-    diff = diff --color-words
-    s  = status
     aa = add -A
+    amend = commit -a --amend --no-edit --date=now
     bump = commit -am 'bump'
-    pushit = push origin master
+    cam = commit -am
+    cm = commit -m
+    co = checkout
+    diff = diff --color-words
+    etc = "!f() { git checkout ETC-${1}; }; f"
+    etcb = "!f() { git checkout -b ETC-${1}; }; f"
+    etcbr = "!f() { git checkout -B ETC-${1}; }; f"
+    gl = log -100 --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
+    pmm = pull mine master
+    pom = pull origin master
+    pushit = !sh -c \"git push origin $(git rev-parse --abbrev-ref HEAD)\"
+    reseth = !sh -c \"git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)\"
+    resethom = reset --hard origin/main
+    rh = reset --hard 
+    rhm = reset --hard origin/main
+    rv = remote -v
+    s  = status
+	serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
