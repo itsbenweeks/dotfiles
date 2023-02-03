@@ -65,7 +65,7 @@ alias documents="cd ~/documents"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast docker npm osx python sudo systemd tmux urltools)
+plugins=(gitfast docker npm macos python sudo systemd tmux urltools)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -157,7 +157,7 @@ function get_ec2_ip_by_name() {
 }
 
 ## Connect to ec2 instance with name, pem, and region.
-# If there are more than 3 program parameters, then send 
+# If there are more than 3 program parameters, then send
 # the addition 3+ as a command over ssh.
 function connect_to_ec2() {
     PEM_FILE=$1
@@ -263,7 +263,7 @@ function load_env() {
     fi
 }
 
-### Cut a release branch in git from the `master` branch. 
+### Cut a release branch in git from the `master` branch.
 function cut_release() {
     # Get branches from all remotes so we can check for them.
     git fetch --all
